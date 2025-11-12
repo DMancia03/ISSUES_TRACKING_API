@@ -23,16 +23,16 @@ namespace ISSUES_TRACKING_API.Models
         public int IdPriorityIssue { get; set; }
 
         [Column("CREATE_USER", TypeName = "NVARCHAR(50)")]
-        public string CreateUser { get; set; } = null!;
+        public string? CreateUser { get; set; } = null!;
 
         [Column("CREATE_DATE", TypeName = "DATETIME")]
-        public DateTime CreateDate { get; set; }
+        public DateTime? CreateDate { get; set; }
 
         [Column("RESOLVE_USER", TypeName = "NVARCHAR(50)")]
-        public string ResolveUser { get; set; } = null!;
+        public string? ResolveUser { get; set; }
 
         [Column("RESOLVE_DATE", TypeName = "DATETIME")]
-        public DateTime ResolveDate { get; set; }
+        public DateTime? ResolveDate { get; set; }
 
         public StatusIssue? StatusIssue { get; set; }
         public PriorityIssue? PriorityIssue { get; set; }

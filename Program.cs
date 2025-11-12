@@ -1,4 +1,6 @@
 using ISSUES_TRACKING_API.Data;
+using ISSUES_TRACKING_API.IRepositories;
+using ISSUES_TRACKING_API.Repositorys;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,11 @@ builder.Services.AddSwaggerGen();
 //
 builder.Services.AddDbContext<IssuesTrackingDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//
+builder.Services.AddScoped<IIssueRepository, IssueRepository>();
+builder.Services.AddScoped<IStatusIssueRepository, StatusIssueRepository>();
+builder.Services.AddScoped<IPriorityIssueRepository, PriorityIssueRepository>();
 
 var app = builder.Build();
 
