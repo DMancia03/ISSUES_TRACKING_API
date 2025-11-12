@@ -6,6 +6,7 @@ namespace ISSUES_TRACKING_API.IRepositories
     {
         public List<Issue> GetAllIssuesSimple();
         public List<Issue> GetAllIssuesWithNavigations();
+        public List<Issue> GetAllIssuesForStatus(string status);
         public Issue? GetIssue(int id);
         public void AddIssue(Issue issue);
         public void UpdateIssue(Issue issue);

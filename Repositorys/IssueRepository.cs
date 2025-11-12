@@ -39,6 +39,28 @@ namespace ISSUES_TRACKING_API.Repositorys
                     }).ToList();
         }
 
+        public List<Issue> GetAllIssuesForStatus(string status)
+        {
+            return (from i in _db.Issues
+                    join s in _db.StatusIssues on i.IdStatusIssue equals s.IdStatusIssue
+                    join p in _db.PriorityIssues on i.IdPriorityIssue equals p.IdPriorityIssue
+                    where s.DescriptionStatus == status
+                    select new Issue
+                    {
+                        IdIssue = i.IdIssue,
+                        Title = i.Title,
+                        DescriptionIssue = i.DescriptionIssue,
+                        IdStatusIssue = i.IdStatusIssue,
+                        IdPriorityIssue = i.IdPriorityIssue,
+                        CreateUser = i.CreateUser,
+                        CreateDate = i.CreateDate,
+                        ResolveUser = i.ResolveUser,
+                        ResolveDate = i.ResolveDate,
+                        StatusIssue = s,
+                        PriorityIssue = p
+                    }).ToList();
+        }
+
         public Issue? GetIssue(int id)
         {
             return _db.Issues.Find(id);

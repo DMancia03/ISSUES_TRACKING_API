@@ -41,6 +41,48 @@ namespace ISSUES_TRACKING_API.Controllers
             return Ok(issuesList);
         }
 
+        [HttpGet("resolved/", Name = "GetResolveIssues")]
+        public IActionResult GetResolveIssues()
+        {
+            List<IssueApiModel> issuesList = _issueRepo.GetAllIssuesForStatus("Resolved").Select(i => new IssueApiModel()
+            {
+                IdIssue = i.IdIssue,
+                Title = i.Title,
+                DescriptionIssue = i.DescriptionIssue,
+                IdStatusIssue = i.StatusIssue.IdStatusIssue,
+                StatusIssue = i.StatusIssue.DescriptionStatus,
+                IdPriorityIssue = i.PriorityIssue.IdPriorityIssue,
+                PriorityIssue = i.PriorityIssue.DescriptionPriority,
+                CreateUser = i.CreateUser,
+                CreateDate = i.CreateDate,
+                ResolveUser = i.ResolveUser,
+                ResolveDate = i.ResolveDate
+            }).ToList();
+
+            return Ok(issuesList);
+        }
+
+        [HttpGet("open/", Name = "GetOpenIssues")]
+        public IActionResult GetOpenIssues()
+        {
+            List<IssueApiModel> issuesList = _issueRepo.GetAllIssuesForStatus("Open").Select(i => new IssueApiModel()
+            {
+                IdIssue = i.IdIssue,
+                Title = i.Title,
+                DescriptionIssue = i.DescriptionIssue,
+                IdStatusIssue = i.StatusIssue.IdStatusIssue,
+                StatusIssue = i.StatusIssue.DescriptionStatus,
+                IdPriorityIssue = i.PriorityIssue.IdPriorityIssue,
+                PriorityIssue = i.PriorityIssue.DescriptionPriority,
+                CreateUser = i.CreateUser,
+                CreateDate = i.CreateDate,
+                ResolveUser = i.ResolveUser,
+                ResolveDate = i.ResolveDate
+            }).ToList();
+
+            return Ok(issuesList);
+        }
+
         [HttpPost(Name = "CreateIssue")]
         public IActionResult CreateIssue([FromBody] IssueApiModel issue)
         {
