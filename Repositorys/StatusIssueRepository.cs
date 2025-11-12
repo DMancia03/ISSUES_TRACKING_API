@@ -29,5 +29,12 @@ namespace ISSUES_TRACKING_API.Repositorys
            
             return status != null ? status.IdStatusIssue : 0;
         }
+
+        public int GetStatusForOpen()
+        {
+            var status = _db.StatusIssues.Where(s => s.DescriptionStatus == "Open").FirstOrDefault();
+
+            return status != null ? status.IdStatusIssue : 0;
+        }
     }
 }

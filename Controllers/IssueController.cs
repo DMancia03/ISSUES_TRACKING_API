@@ -44,10 +44,17 @@ namespace ISSUES_TRACKING_API.Controllers
         [HttpPost(Name = "CreateIssue")]
         public IActionResult CreateIssue([FromBody] IssueApiModel issue)
         {
+            int idStatusOpen = _status.GetStatusForOpen();
+
+            if(idStatusOpen == 0)
+            {
+                return NotFound();
+            }
+
             Issue newIssue = new Issue() { 
                 Title = issue.Title,
                 DescriptionIssue = issue.DescriptionIssue,
-                IdStatusIssue = issue.IdStatusIssue,
+                IdStatusIssue = idStatusOpen,
                 IdPriorityIssue = issue.IdPriorityIssue,
                 CreateUser = "system",
                 CreateDate = DateTime.Now

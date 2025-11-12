@@ -5,7 +5,7 @@
         public int IdIssue { get; set; }
         public string Title { get; set; } = null!;
         public string DescriptionIssue { get; set; } = null!;
-        public int IdStatusIssue { get; set; }
+        public int? IdStatusIssue { get; set; }
         public string? StatusIssue { get; set; }
         public int IdPriorityIssue { get; set; }
         public string? PriorityIssue { get; set; }

@@ -7,5 +7,6 @@ namespace ISSUES_TRACKING_API.IRepositories
         public List<StatusIssue> GetAllStatusIssues();
         public StatusIssue? GetStatusIssue(int id);
         public int GetStatusForResolved();
+        public int GetStatusForOpen();
     }
 }
